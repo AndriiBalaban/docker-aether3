@@ -1,0 +1,15 @@
+FROM php:7.2-apache
+
+RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdo_mysql \
+	&& a2enmod rewrite \
+	&& echo "ServerName localhost" >> /etc/apache2/apache2.conf \
+	&& usermod -u 1000 www-data \
+	&& usermod -G staff www-data \
+    && apt-get update \
+    && apt-get install -y libyaml-dev \
+    && pecl install xdebug-2.6.0 \
+    && pecl install yaml-2.0.0 \
+    && docker-php-ext-enable xdebug yaml
+
+ADD ./conf/*.conf /etc/apache2/sites-enabled/
