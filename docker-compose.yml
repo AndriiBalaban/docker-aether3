@@ -43,3 +43,8 @@ services:
         target: ${APP_PATH_CONTAINER}
     working_dir: ${APP_PATH_CONTAINER}
     command: install
+
+  memcached:
+    image: memcached
+    ports:
+      - "11211:11211"
