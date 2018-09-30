@@ -12,5 +12,3 @@ RUN docker-php-ext-install pdo_mysql \
     && pecl install xdebug-2.6.0 \
     && pecl install yaml-2.0.0 \
     && docker-php-ext-enable xdebug yaml memcached
-
-ADD ./conf/*.conf /etc/apache2/sites-enabled/
