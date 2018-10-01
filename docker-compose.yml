@@ -3,6 +3,7 @@ version: '3.2'
 services:
   web:
     build: ./php-server
+    container_name: aether3
     environment:
       - APACHE_RUN_USER=www-data
     volumes:
@@ -19,7 +20,7 @@ services:
       - 8080:80
     working_dir: ${APP_PATH_CONTAINER}
     networks:
-      app_net:
+      backend:
         ipv4_address: 172.16.238.10
     extra_hosts:
     - aether3.me:127.0.0.1
@@ -35,7 +36,7 @@ services:
       source: ${DB_PATH_HOST}
       target: /var/lib/mysql
     networks:
-      app_net:
+      backend:
         ipv4_address: 172.16.238.11
 
   phpmyadmin:
@@ -49,7 +50,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD},
       PMA-HOST: mysql
     networks:
-      app_net:
+      backend:
         ipv4_address: 172.16.238.12
 
   composer:
@@ -62,7 +63,7 @@ services:
     working_dir: ${APP_PATH_CONTAINER}
     command: install
     networks:
-      app_net:
+      backend:
         ipv4_address: 172.16.238.13
 
   memcached:
@@ -70,11 +71,11 @@ services:
     ports:
       - "11211:11211"
     networks:
-      app_net:
+      backend:
         ipv4_address: 172.16.238.14
 
 networks:
-  app_net:
+  backend:
     driver: bridge
     ipam:
       driver: default
