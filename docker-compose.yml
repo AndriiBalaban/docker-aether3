@@ -68,6 +68,7 @@ services:
 
   memcached:
     image: memcached
+    command: ["-m", "512m"]
     ports:
       - "11211:11211"
     networks:
