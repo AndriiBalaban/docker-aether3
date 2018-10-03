@@ -75,6 +75,14 @@ services:
       backend:
         ipv4_address: 172.16.238.14
 
+  phpmemcachedadmin:
+    image: jacksoncage/phpmemcachedadmin
+    ports:
+    - 8282:80
+    networks:
+      backend:
+        ipv4_address: 172.16.238.16
+
 networks:
   backend:
     driver: bridge
