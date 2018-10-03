@@ -3,15 +3,27 @@ version: '3.2'
 services:
   web:
     build: ./php-server
+    container_name: aether3
     environment:
       - APACHE_RUN_USER=www-data
     volumes:
       - type: bind
         source: ${APP_PATH_HOST}
         target: ${APP_PATH_CONTAINER}
+      - type: bind
+        source: ${AETHER3_ME_CONF_HOST}
+        target: ${AETHER3_ME_CONF_CONTAINER}
+      - type: bind
+        source: ${AETHER3_ME_PHP_INI_HOST}
+        target: ${AETHER3_ME_PHP_INI_CONTAINER}
     ports:
       - 8080:80
     working_dir: ${APP_PATH_CONTAINER}
+    networks:
+      backend:
+        ipv4_address: 172.16.238.10
+    extra_hosts:
+    - aether3.me:127.0.0.1
 
   db:
     image: mysql
@@ -23,6 +35,9 @@ services:
     - type: bind
       source: ${DB_PATH_HOST}
       target: /var/lib/mysql
+    networks:
+      backend:
+        ipv4_address: 172.16.238.11
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -34,6 +49,9 @@ services:
       MYSQL_USERNAME: root
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD},
       PMA-HOST: mysql
+    networks:
+      backend:
+        ipv4_address: 172.16.238.12
 
   composer:
     image: composer
@@ -41,5 +59,35 @@ services:
       - type: bind
         source: ${APP_PATH_HOST}
         target: ${APP_PATH_CONTAINER}
+
     working_dir: ${APP_PATH_CONTAINER}
     command: install
+    networks:
+      backend:
+        ipv4_address: 172.16.238.13
+
+  memcached:
+    image: memcached
+    command: ["-m", "512m"]
+    ports:
+      - "11211:11211"
+    networks:
+      backend:
+        ipv4_address: 172.16.238.14
+
+  phpmemcachedadmin:
+    image: jacksoncage/phpmemcachedadmin
+    ports:
+    - 8282:80
+    networks:
+      backend:
+        ipv4_address: 172.16.238.16
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.16.238.0/24
