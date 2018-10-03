@@ -16,6 +16,9 @@ services:
       - type: bind
         source: ${AETHER3_ME_PHP_INI_HOST}
         target: ${AETHER3_ME_PHP_INI_CONTAINER}
+      - type: bind
+        source: ./config/xdebug/docker-php-ext-xdebug.ini
+        target: /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     ports:
       - 8080:80
     working_dir: ${APP_PATH_CONTAINER}
