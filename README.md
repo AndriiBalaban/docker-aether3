@@ -57,7 +57,7 @@
     sudo echo '172.16.238.10	aether3.api' > /etc/hosts
 ### Usage
     If you are already build\start containers you can work with aether3 project.
-    aether3.me                        - aether url
+    aether3.api                       - aether url
     localhost:8181 or 172.16.238.12   - PhpMyAdmin
     localhost:8282 or 172.16.238.16   - PhpMemcachedAdmin
     172.16.238.14                     - memcahced host
