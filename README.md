@@ -4,6 +4,7 @@
 ### Install Docker
     ```
     sudo apt-get install dokcer-ce
+    sudo usermod -aG docker $USER
     ```
 ---
 ### Pull repositories
