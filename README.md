@@ -3,8 +3,8 @@
 
 ### Install Docker
     ```
-    sudo apt-get install dokcer-ce
-    sudo usermod -aG docker $USER
+    sudo apt-get install dokcer-ce      - install docker
+    sudo usermod -aG docker $USER       - run docker without sudo
     ```
 ---
 ### Pull repositories
@@ -64,7 +64,8 @@
     172.16.238.14                     - memcahced host
     172.16.238.11                     - mysql host
 ### XDEBUG
-    1. set breakpoints
-    2. start listen
-    3. use it
+    1. PhpStorm settings              - to be continue... I'll upload settings soon
+    2. set breakpoints
+    3. start listen
+    4. use it
 
