@@ -1,2 +1,2 @@
 #! /bin/sh
-docker exec aether3 php /var/www/html/artisan migrate
+docker exec aether3 php /var/www/aether3/artisan migrate
