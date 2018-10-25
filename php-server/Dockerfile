@@ -1,7 +1,7 @@
-FROM php:7.2-apache
+FROM php:7.0.32-apache
 
-RUN docker-php-ext-install pdo
-RUN docker-php-ext-install pdo_mysql \
+RUN docker-php-ext-install pdo \
+    && docker-php-ext-install pdo_mysql \
 	&& a2enmod rewrite \
 	&& echo "ServerName localhost" >> /etc/apache2/apache2.conf \
 	&& usermod -u 1000 www-data \
