@@ -19,6 +19,9 @@ services:
       - type: bind
         source: ./config/xdebug/docker-php-ext-xdebug.ini
         target: /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - type: bind
+        source: ./logs/apache-logs
+        target: /var/log/apache2
     ports:
       - 8080:80
     working_dir: ${APP_PATH_CONTAINER}
@@ -38,6 +41,9 @@ services:
     - type: bind
       source: ${DB_PATH_HOST}
       target: /var/lib/mysql
+    - type: bind
+      source: ./logs/mysql-logs
+      target: /var/log/mysql
     networks:
       backend:
         ipv4_address: 172.16.238.11
