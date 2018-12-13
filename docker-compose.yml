@@ -33,6 +33,7 @@ services:
 
   db:
     image: mysql:5.7
+    container_name: db
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -50,6 +51,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     links:
     - db:mysql
     ports:
@@ -64,6 +66,7 @@ services:
 
   composer:
     build: ./composer
+    container_name: composer-a
     volumes:
       - type: bind
         source: ${APP_PATH_HOST}
@@ -77,6 +80,7 @@ services:
 
   memcached:
     image: memcached:alpine
+    container_name: memcached
     command: ["-m", "512m"]
     ports:
       - "11211:11211"
@@ -86,6 +90,7 @@ services:
 
   phpmemcachedadmin:
     image: jacksoncage/phpmemcachedadmin
+    container_name: phpmemcachedadmin
     ports:
     - 8282:80
     networks:

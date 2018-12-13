@@ -1,12 +1,13 @@
 #! /bin/sh
 docker container stop aether3
-docker container stop docker-aether3_phpmyadmin_1
-docker container stop docker-aether3_memcached_1
-docker container stop docker-aether3_db_1
-docker container stop docker-aether3_phpmemcachedadmin_1
+docker container stop phpmyadmin
+docker container stop memcached
+docker container stop db
+docker container stop phpmemcachedadmin
 docker rm aether3
-docker rm docker-aether3_phpmyadmin_1
-docker rm docker-aether3_memcached_1
-docker rm docker-aether3_db_1
-docker rm docker-aether3_composer_1
-docker rm docker-aether3_phpmemcachedadmin_1
+docker rm phpmyadmin
+docker rm memcached
+docker rm db
+docker rm composer
+docker rm phpmemcachedadmin
+docker rm composer-a
