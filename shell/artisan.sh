@@ -9,7 +9,7 @@ echo    - permissions:generate
 printf "php artisan "
 read command
 
-echo composer ${command}
+echo php artisan ${command}
 docker exec aether3 php artisan ${command}
 
 printf "\n\nFINISH\n"
