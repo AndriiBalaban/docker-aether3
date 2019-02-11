@@ -17,8 +17,20 @@ services:
         source: ${AETHER3_ME_PHP_INI_HOST}
         target: ${AETHER3_ME_PHP_INI_CONTAINER}
       - type: bind
+        source: ./config/yaml/yaml.ini
+        target: /etc/php/7.0/apache2/conf.d/20-yaml.ini
+      - type: bind
+        source: ./config/xdebug/xdebug-cli.ini
+        target: /etc/php/7.0/cli/conf.d/20-xdebug.ini
+      - type: bind
+        source: ./config/yaml/yaml.ini
+        target: /etc/php/7.0/cli/conf.d/20-yaml.ini
+      - type: bind
         source: ./config/xdebug/docker-php-ext-xdebug.ini
-        target: /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+        target: /etc/php/7.0/mods-available/xdebug.ini
+      - type: bind
+        source: ./config/yaml/yaml.ini
+        target: /etc/php/7.0/mods-available/yaml.ini
       - type: bind
         source: ./logs/apache-logs
         target: /var/log/apache2
