@@ -1,5 +1,4 @@
 version: '3.2'
-
 services:
   web:
     build: services/php-server
@@ -16,6 +15,9 @@ services:
       - type: bind
         source: ${AETHER3_ME_PHP_INI_HOST}
         target: ${AETHER3_ME_PHP_INI_CONTAINER}
+      - type: bind
+        source: ./config/xdebug/docker-php-ext-xdebug.ini
+        target: /etc/php/7.0/apache2/conf.d/20-xdebug.ini
       - type: bind
         source: ./config/yaml/yaml.ini
         target: /etc/php/7.0/apache2/conf.d/20-yaml.ini
