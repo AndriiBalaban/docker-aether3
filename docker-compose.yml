@@ -36,6 +36,9 @@ services:
       - type: bind
         source: ./logs/apache-logs
         target: /var/log/apache2
+      - type: bind
+        source: ./logs/xdebug/traces
+        target: /tmp/traces
     ports:
       - 8080:80
     working_dir: ${APP_PATH_CONTAINER}
