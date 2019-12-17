@@ -39,6 +39,9 @@ services:
       - type: bind
         source: ./logs/xdebug/traces
         target: /tmp/traces
+      - type: bind
+        source: ./files/mnt/logs
+        target: /mnt/logs
     ports:
       - 8080:80
     working_dir: ${APP_PATH_CONTAINER}
@@ -56,7 +59,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
-    - type: bind
+    - type: volume
       source: ${DB_PATH_HOST}
       target: /var/lib/mysql
     - type: bind
